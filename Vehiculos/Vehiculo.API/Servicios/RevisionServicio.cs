@@ -1,10 +1,10 @@
 ﻿using Abstracciones.Interfaces.Reglas;
 using Abstracciones.Interfaces.Servicios;
-using Abstracciones.Modelos;
+using Abstracciones.Modelos.Servicios.Registro;
+using Abstracciones.Modelos.Servicios.Revision;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Text.Json;
-
 
 namespace Servicios
 {
@@ -25,9 +25,9 @@ namespace Servicios
         {
             try
             {
-                var endpoint = _configuracion.ObtenerMetodo("ApiEndPointsRevision", "ObtenerRevision");
-                var servicioRevision = _httpClient.CreateClient("ServicioRevision");
-                var respuesta = await servicioRevision.GetAsync(string.Format(endpoint, placa));
+                var endPoint = _configuracion.ObtenerMetodo("ApiEndpointsRevision", "ObtenerRevision");
+                var servicioRegistro = _httpClient.CreateClient("ServicioRevision");
+                var respuesta = await servicioRegistro.GetAsync(string.Format(endPoint, placa));
                 respuesta.EnsureSuccessStatusCode();
                 var resultado = await respuesta.Content.ReadAsStringAsync();
                 var opciones = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
@@ -39,7 +39,6 @@ namespace Servicios
                 _logger.LogError(ex, "Error al consultar el registro");
                 return null;
             }
-
         }
     }
 }

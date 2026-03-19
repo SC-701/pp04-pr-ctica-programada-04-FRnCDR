@@ -1,7 +1,7 @@
 ﻿using Abstracciones.Interfaces.DA;
 using Abstracciones.Modelos;
-using Microsoft.Data.SqlClient;
 using Dapper;
+using Microsoft.Data.SqlClient;
 
 namespace DA
 {
@@ -17,7 +17,6 @@ namespace DA
             _sqlConnection = _repositorioDapper.ObtenerRepositorio();
         }
 
-        #region Operaciones
         public async Task<IEnumerable<Marca>> Obtener()
         {
             string query = @"ObtenerMarcas";
@@ -25,7 +24,5 @@ namespace DA
             return resultadoConsulta;
         }
 
- 
-        #endregion
     }
 }

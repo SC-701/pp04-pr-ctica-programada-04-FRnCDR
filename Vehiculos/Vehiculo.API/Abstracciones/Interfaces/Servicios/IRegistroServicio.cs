@@ -1,4 +1,4 @@
-﻿using Abstracciones.Modelos;
+﻿using Abstracciones.Modelos.Servicios.Registro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,8 @@ namespace Abstracciones.Interfaces.Servicios
 {
     public interface IRegistroServicio
     {
+
         Task<Propietario> Obtener(string placa);
+
     }
 }

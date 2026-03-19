@@ -14,9 +14,9 @@ BEGIN
 
     -- Insert statements for procedure here
 	BEGIN TRANSACTION
-		DELETE
-		FROM            Vehiculo
-		WHERE        (Id = @Id)
-		SELECT @Id
-	COMMIT TRANSACTION
+DELETE
+FROM            Vehiculos
+WHERE        (Id = @Id)
+select @Id
+COMMIT TRANSACTION
 END

@@ -7,9 +7,9 @@ namespace Flujo
 {
     public class VehiculoFlujo : IVehiculoFlujo
     {
-        private IVehiculoDA _vehiculoDA;
-        private IRegistroReglas _registroReglas;
-        private IRevisionReglas _revisionReglas;
+        private readonly IVehiculoDA _vehiculoDA;
+        private readonly IRegistroReglas _registroReglas;
+        private readonly IRevisionReglas _revisionReglas;
 
         public VehiculoFlujo(IVehiculoDA vehiculoDA, IRevisionReglas revisionReglas, IRegistroReglas registroReglas)
         {
@@ -35,11 +35,11 @@ namespace Flujo
 
         public async Task<IEnumerable<VehiculoResponse>> Obtener()
         {
-            return await _vehiculoDA.Obtener();
+            return await _vehiculoDA.Obtener();  
         }
 
         public async Task<VehiculoDetalle> Obtener(Guid Id)
-        {            
+        {
             var vehiculo = await _vehiculoDA.Obtener(Id);
             vehiculo.RevisionValida = await _revisionReglas.RevisionEsValida(vehiculo.Placa);
             vehiculo.RegistroValido = await _registroReglas.VehiculoEstaRegistrado(vehiculo.Placa, vehiculo.CorreoPropietario);

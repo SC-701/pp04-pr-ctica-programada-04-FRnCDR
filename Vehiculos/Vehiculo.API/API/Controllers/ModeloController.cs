@@ -1,13 +1,12 @@
 ﻿using Abstracciones.Interfaces.API;
 using Abstracciones.Interfaces.Flujo;
-using Abstracciones.Modelos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ModeloController : ControllerBase, IModeloController
+    public class ModeloController : Controller , IModeloController
     {
         private IModeloFlujo _modeloFlujo;
         private ILogger<ModeloController> _logger;
@@ -17,7 +16,6 @@ namespace API.Controllers
             _modeloFlujo = modeloFLujo;
             _logger = logger;
         }
-        #region Operaciones
         [HttpGet("{IdMarca}")]
         public async Task<IActionResult> Obtener(Guid IdMarca)
         {
@@ -26,7 +24,5 @@ namespace API.Controllers
                 return NoContent();
             return Ok(resultado);
         }
-        #endregion Operaciones
-
     }
 }
